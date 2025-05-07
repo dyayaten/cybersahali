@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Sahali - Cybersecurity Solutions</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="logo.svg" alt="Cyber Sahali Logo" class="logo-icon">
+                <h1>Cyber<span>Sahali</span></h1>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+                <li><a href="#contact" class="book-appointment-btn">Book Appointment</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="cyber-threat-map" id="cyberThreatMap">
+            <!-- Cyber threat map background -->
+            <div class="map-overlay"></div>
+            <div class="world-map-container">
+                <div class="world-map"></div>
+                <div class="pulse-circles"></div>
+            </div>
+            <div class="map-grid"></div>
+            <div class="attack-points"></div>
+            <div class="attack-lines"></div>
+
+            <!-- Threat Stats Panel -->
+            <div class="map-stats">
+                <div class="stat-header">GLOBAL SECURITY DASHBOARD</div>
+                <div class="stats-container">
+                    <div class="stat">
+                        <span class="stat-label">ACTIVE THREATS</span>
+                        <span class="stat-value" id="activeThreatCount">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">BLOCKED ATTACKS</span>
+                        <span class="stat-value" id="blockedAttackCount">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">THREAT LEVEL</span>
+                        <span class="stat-value" id="threatLevel">MONITORING</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">PROTECTED SYSTEMS</span>
+                        <span class="stat-value" id="protectedSystems">1,458</span>
+                    </div>
+                </div>
+                <div class="map-timestamp" id="mapTimestamp">LIVE: 00:00:00 UTC</div>
+            </div>
+
+            <!-- Security Status Indicators -->
+            <div class="security-indicators">
+                <div class="indicator">
+                    <div class="indicator-dot active"></div>
+                    <span>Firewall Active</span>
+                </div>
+                <div class="indicator">
+                    <div class="indicator-dot active"></div>
+                    <span>Intrusion Detection</span>
+                </div>
+                <div class="indicator">
+                    <div class="indicator-dot active"></div>
+                    <span>Encryption</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="motion-optics-bg" id="sparksContainer">
+            <!-- Sparks will be dynamically added here by JavaScript -->
+        </div>
+
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">ADVANCED PROTECTION</div>
+                <h1 data-text="Securing Your Digital Future">Securing Your Digital Future</h1>
+                <p class="hero-tagline"><span class="highlight">CyberSahali</span> <span class="text-glow">Smart Protection</span>, <span class="text-pulse">Instant Response</span></p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary">Explore Solutions</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">99.9%</span>
+                        <span class="hero-stat-label">Threat Detection</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">24/7</span>
+                        <span class="hero-stat-label">Monitoring</span>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="hero-stat-value">9+</span>
+                        <span class="hero-stat-label">Enterprise Clients</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-text="Our Services">Our Services</h2>
+                <p>Protecting your digital assets with cutting-edge solutions</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-service="network">
+                    <div class="service-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <h3>Network Security</h3>
+                    <p>Comprehensive protection for your network infrastructure against unauthorized access and cyber threats.</p>
+                    <button class="btn-report" data-service="network">Report Issue</button>
+                </div>
+                <div class="service-card" data-service="encryption">
+                    <div class="service-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Data Encryption</h3>
+                    <p>Advanced encryption solutions to keep your sensitive data secure and confidential.</p>
+                    <button class="btn-report" data-service="encryption">Report Issue</button>
+                </div>
+                <div class="service-card" data-service="identity">
+                    <div class="service-icon">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h3>Identity Protection</h3>
+                    <p>Safeguard your digital identity with our multi-factor authentication and identity management systems.</p>
+                    <button class="btn-report" data-service="identity">Report Issue</button>
+                </div>
+                <div class="service-card" data-service="audit">
+                    <div class="service-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>Security Audits</h3>
+                    <p>Comprehensive assessment of your security posture to identify vulnerabilities and recommend improvements.</p>
+                    <button class="btn-report" data-service="audit">Report Issue</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 data-text="About Cyber Sahali">About Cyber Sahali</h2>
+                    <p>Founded in 2025, Cyber Sahali emerged with a bold vision: to redefine digital protection and deliver cybersecurity solutions that genuinely serve the people.</p>
+                    <p>Our mission is to satisfy clients not just with robust security tools, but with care, transparency, and a human touch. Every service we provide is built around real needs — to help individuals and businesses stay secure, empowered, and confident in a rapidly evolving digital world.</p>
+                    <p>Driven by passion and purpose, we don't just offer protection — we inspire trust.</p>
+                    <p>Your digital future starts here — and we're here to safeguard every step of it.</p>
+                </div>
+                <div class="about-image">
+                    <div class="team-image" id="techno3d">
+                        <!-- 3D techno elements will be added by JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 data-text="What Our Clients Say">What Our Clients Say</h2>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"Cyber Sahali transformed our security infrastructure. Their team's expertise and dedication to our needs was exceptional."</p>
+                        <div class="client-info">
+                            <h4>Sarah Johnson</h4>
+                            <p>CTO, TechNova Inc.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-content">
+                        <p>"After experiencing a security breach, we turned to Cyber Sahali. Their rapid response and comprehensive solutions prevented any further damage."</p>
+                        <div class="client-info">
+                            <h4>Michael Chen</h4>
+                            <p>Director of IT, Global Finance</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header contact-header">
+                <h2 data-text="Book an Appointment">Book an Appointment</h2>
+                <p>Schedule a consultation with our cybersecurity experts</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/mjkwyakn" method="POST">
+                        <input type="hidden" name="_subject" value="New Appointment Request">
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" name="phone" placeholder="Your Phone Number" required>
+                        </div>
+                        <div class="form-group">
+                            <select name="service" required>
+                                <option value="" disabled selected>Select Service</option>
+                                <option value="network">Network Security</option>
+                                <option value="encryption">Data Encryption</option>
+                                <option value="identity">Identity Protection</option>
+                                <option value="audit">Security Audit</option>
+                                <option value="consultation">General Consultation</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="month" id="appointmentMonth" required>
+                                <option value="" disabled selected>Select Month</option>
+                                <option value="January">January</option>
+                                <option value="February">February</option>
+                                <option value="March">March</option>
+                                <option value="April">April</option>
+                                <option value="May">May</option>
+                                <option value="June">June</option>
+                                <option value="July">July</option>
+                                <option value="August">August</option>
+                                <option value="September">September</option>
+                                <option value="October">October</option>
+                                <option value="November">November</option>
+                                <option value="December">December</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="day" id="appointmentDay" required>
+                                <option value="" disabled selected>Select Day</option>
+                                <!-- Days will be populated by JavaScript -->
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="time" required>
+                                <option value="" disabled selected>Select Time</option>
+                                <option value="09:00">9:00 AM</option>
+                                <option value="10:00">10:00 AM</option>
+                                <option value="11:00">11:00 AM</option>
+                                <option value="12:00">12:00 PM</option>
+                                <option value="13:00">1:00 PM</option>
+                                <option value="14:00">2:00 PM</option>
+                                <option value="15:00">3:00 PM</option>
+                                <option value="16:00">4:00 PM</option>
+                                <option value="17:00">5:00 PM</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Additional information or special requests..." required></textarea>
+                        </div>
+                        <input type="hidden" name="_next" value="http://localhost:8080?appointment_success=true">
+                        <button type="submit" class="btn btn-primary">Book Appointment</button>
+                    </form>
+                </div>
+                <div class="contact-info">
+                    <div class="info-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>مدينة الكويت</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-phone"></i>
+                        <p>+965 55158112</p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fas fa-envelope"></i>
+                        <p><a href="mailto:cybersahali@gmail.com">cybersahali@gmail.com</a></p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-instagram"></i>
+                        <p><a href="https://www.instagram.com/cybersahali?igsh=MWxzaHRxZmNrYmMwcQ==" target="_blank">@cybersahali</a></p>
+                    </div>
+                    <div class="info-item">
+                        <i class="fab fa-x-twitter"></i>
+                        <p><a href="https://x.com/CyberSahali" target="_blank">@CyberSahali</a></p>
+                    </div>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/cybersahali?igsh=MWxzaHRxZmNrYmMwcQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/CyberSahali" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                        <a href="contact-email.html"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Cyber<span>Sahali</span></h2>
+                    <p>Securing your digital future</p>
+                    <div class="footer-social">
+                        <a href="https://www.instagram.com/cybersahali?igsh=MWxzaHRxZmNrYmMwcQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://x.com/CyberSahali" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                        <a href="contact-email.html"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Quick Links</h3>
+                        <ul>
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#services">Services</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Services</h3>
+                        <ul>
+                            <li><a href="#services">Network Security</a></li>
+                            <li><a href="#services">Data Encryption</a></li>
+                            <li><a href="#services">Identity Protection</a></li>
+                            <li><a href="#services">Security Audits</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Legal</h3>
+                        <ul>
+                            <li><a href="#">Privacy Policy</a></li>
+                            <li><a href="#">Terms of Service</a></li>
+                            <li><a href="#">Cookie Policy</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Cyber Sahali. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Issue Modals -->
+    <div class="modal-container">
+        <!-- Network Security Modal -->
+        <div id="networkModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Report Network Security Issue</h3>
+                <form class="issue-form" data-service="network" action="https://formspree.io/f/mjkwyakn" method="POST">
+                    <input type="hidden" name="_subject" value="Network Security Issue Report">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Issue Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="description" placeholder="Describe your issue in detail..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="networkUrgency">Urgency Level:</label>
+                        <select name="urgency" id="networkUrgency" required>
+                            <option value="low">Low - Not time sensitive</option>
+                            <option value="medium">Medium - Needs attention soon</option>
+                            <option value="high">High - Urgent issue</option>
+                            <option value="critical">Critical - Security breach in progress</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="_next" value="http://localhost:8080?issue_success=true">
+                    <input type="hidden" name="service" value="Network Security">
+                    <button type="submit" class="btn btn-primary">Submit Issue</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Data Encryption Modal -->
+        <div id="encryptionModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Report Data Encryption Issue</h3>
+                <form class="issue-form" data-service="encryption" action="https://formspree.io/f/mjkwyakn" method="POST">
+                    <input type="hidden" name="_subject" value="Data Encryption Issue Report">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Issue Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="description" placeholder="Describe your issue in detail..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="encryptionUrgency">Urgency Level:</label>
+                        <select name="urgency" id="encryptionUrgency" required>
+                            <option value="low">Low - Not time sensitive</option>
+                            <option value="medium">Medium - Needs attention soon</option>
+                            <option value="high">High - Urgent issue</option>
+                            <option value="critical">Critical - Data breach concern</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="_next" value="http://localhost:8080?issue_success=true">
+                    <input type="hidden" name="service" value="Data Encryption">
+                    <button type="submit" class="btn btn-primary">Submit Issue</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Identity Protection Modal -->
+        <div id="identityModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Report Identity Protection Issue</h3>
+                <form class="issue-form" data-service="identity" action="https://formspree.io/f/mjkwyakn" method="POST">
+                    <input type="hidden" name="_subject" value="Identity Protection Issue Report">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Issue Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="description" placeholder="Describe your issue in detail..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="identityUrgency">Urgency Level:</label>
+                        <select name="urgency" id="identityUrgency" required>
+                            <option value="low">Low - Not time sensitive</option>
+                            <option value="medium">Medium - Needs attention soon</option>
+                            <option value="high">High - Urgent issue</option>
+                            <option value="critical">Critical - Identity theft concern</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="_next" value="http://localhost:8080?issue_success=true">
+                    <input type="hidden" name="service" value="Identity Protection">
+                    <button type="submit" class="btn btn-primary">Submit Issue</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Security Audit Modal -->
+        <div id="auditModal" class="modal">
+            <div class="modal-content">
+                <span class="close-modal">&times;</span>
+                <h3>Report Security Audit Issue</h3>
+                <form class="issue-form" data-service="audit" action="https://formspree.io/f/mjkwyakn" method="POST">
+                    <input type="hidden" name="_subject" value="Security Audit Issue Report">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="subject" placeholder="Issue Subject" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="description" placeholder="Describe your issue in detail..." required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="auditUrgency">Urgency Level:</label>
+                        <select name="urgency" id="auditUrgency" required>
+                            <option value="low">Low - Not time sensitive</option>
+                            <option value="medium">Medium - Needs attention soon</option>
+                            <option value="high">High - Urgent issue</option>
+                            <option value="critical">Critical - Vulnerability detected</option>
+                        </select>
+                    </div>
+                    <input type="hidden" name="_next" value="http://localhost:8080?issue_success=true">
+                    <input type="hidden" name="service" value="Security Audit">
+                    <button type="submit" class="btn btn-primary">Submit Issue</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+        <div class="modal-content success-content">
+            <span class="close-modal">&times;</span>
+            <div class="success-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h3>Issue Submitted Successfully!</h3>
+            <p>Thank you for reporting your issue. Our team will review it and get back to you shortly.</p>
+            <p>Your reference number: <span id="referenceNumber"></span></p>
+            <p class="contact-info-modal">For urgent matters, please contact us directly at: <br>
+               <a href="mailto:cybersahali@gmail.com">cybersahali@gmail.com</a> or <a href="tel:+96555158112">+965 55158112</a></p>
+            <button class="btn btn-primary close-success">Close</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<!-- Contact Section -->
+<section id="contact" class="contact">
+    <div class="container">
+        <div class="section-header contact-header">
+            <h2 data-text="Book an Appointment">Book an Appointment</h2>
+            <p>Schedule a consultation with our cybersecurity experts</p>
+        </div>
+        <div class="contact-wrapper">
+            <div class="contact-form">
+                <form id="contactForm" action="https://formspree.io/f/mjkwyakn" method="POST">
+                    <input type="hidden" name="_subject" value="New Appointment Request">
+                    <div class="form-group">
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="phone" placeholder="Your Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <select name="service" required>
+                            <option value="" disabled selected>Select Service</option>
+                            <option value="network">Network Security</option>
+                            <option value="encryption">Data Encryption</option>
+                            <option value="identity">Identity Protection</option>
+                            <option value="audit">Security Audit</option>
+                            <option value="consultation">General Consultation</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="month" id="appointmentMonth" required>
+                            <option value="" disabled selected>Select Month</option>
+                            <option value="January">January</option>
+                            <option value="February">February</option>
+                            <option value="March">March</option>
+                            <option value="April">April</option>
+                            <option value="May">May</option>
+                            <option value="June">June</option>
+                            <option value="July">July</option>
+                            <option value="August">August</option>
+                            <option value="September">September</option>
+                            <option value="October">October</option>
+                            <option value="November">November</option>
+                            <option value="December">December</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="day" id="appointmentDay" required>
+                            <option value="" disabled selected>Select Day</option>
+                            <!-- Days will be populated by JavaScript -->
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <select name="time" required>
+                            <option value="" disabled selected>Select Time</option>
+                            <option value="09:00">9:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="12:00">12:00 PM</option>
+                            <option value="13:00">1:00 PM</option>
+                            <option value="14:00">2:00 PM</option>
+                            <option value="15:00">3:00 PM</option>
+                            <option value="16:00">4:00 PM</option>
+                            <option value="17:00">5:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <textarea name="message" placeholder="Additional information or special requests..." required></textarea>
+                    </div>
+                    <input type="hidden" name="_next" value="http://localhost:8080?appointment_success=true">
+                    <button type="submit" class="btn btn-primary">Book Appointment</button>
+                </form>
+            </div>
+            <div class="contact-info">
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>مدينة الكويت</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+965 55158112</p>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i>
+                    <p><a href="mailto:cybersahali@gmail.com">cybersahali@gmail.com</a></p>
+                </div>
+                <div class="info-item">
+                    <i class="fab fa-instagram"></i>
+                    <p><a href="https://www.instagram.com/cybersahali?igsh=MWxzaHRxZmNrYmMwcQ==" target="_blank">@cybersahali</a></p>
+                </div>
+                <div class="info-item">
+                    <i class="fab fa-x-twitter"></i>
+                    <p><a href="https://x.com/CyberSahali" target="_blank">@CyberSahali</a></p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/cybersahali?igsh=MWxzaHRxZmNrYmMwcQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://x.com/CyberSahali" target="_blank"><i class="fab fa-x-twitter"></i></a>
+                    <a href="contact-email.html"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

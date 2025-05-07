@@ -1,0 +1,234 @@
+/* Appointment Page Styles */
+.appointment-section {
+    padding: 120px 0 80px;
+    background: linear-gradient(to bottom, #000000, #0a0a0a);
+    min-height: 100vh;
+}
+
+.appointment-container {
+    display: flex;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.appointment-form-wrapper {
+    flex: 2;
+    background-color: rgba(15, 15, 15, 0.7);
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 0, 0, 0.1);
+}
+
+.appointment-info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.info-card, .contact-card {
+    background-color: rgba(15, 15, 15, 0.7);
+    border-radius: 10px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 0, 0, 0.1);
+}
+
+.info-card h3, .contact-card h3 {
+    color: var(--text-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.info-card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.info-card ul li {
+    margin-bottom: 12px;
+    padding-left: 20px;
+    position: relative;
+    color: var(--text-light);
+}
+
+.info-card ul li:before {
+    content: "•";
+    color: var(--primary-color);
+    position: absolute;
+    left: 0;
+}
+
+.contact-card p {
+    color: var(--text-light);
+    margin-bottom: 15px;
+}
+
+.contact-info p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.contact-info a {
+    color: var(--text-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+    color: var(--primary-color);
+}
+
+/* Form Sections */
+.form-section {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.form-section h3 {
+    color: var(--text-color);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+/* Service Selection */
+.service-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+}
+
+.service-option {
+    position: relative;
+}
+
+.service-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.service-option label {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 15px;
+    background-color: rgba(30, 30, 30, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.service-option label i {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.service-option label span {
+    color: var(--text-light);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+.service-option input[type="radio"]:checked + label {
+    background-color: rgba(255, 0, 0, 0.1);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.3);
+}
+
+.service-option input[type="radio"]:checked + label i,
+.service-option input[type="radio"]:checked + label span {
+    color: var(--primary-color);
+}
+
+.service-option label:hover {
+    background-color: rgba(50, 50, 50, 0.5);
+}
+
+/* Date and Time Selection */
+.date-time-selection {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+/* Book Now Button */
+.book-now-btn {
+    width: 100%;
+    padding: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 20px;
+    background: linear-gradient(45deg, var(--primary-color-dark), var(--primary-color));
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.book-now-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+}
+
+.book-now-btn i {
+    font-size: 1.2rem;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .appointment-container {
+        flex-direction: column;
+    }
+    
+    .date-time-selection {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .service-selection {
+        grid-template-columns: 1fr 1fr;
+    }
+    
+    .appointment-section {
+        padding: 100px 0 60px;
+    }
+}
+
+@media (max-width: 576px) {
+    .service-selection {
+        grid-template-columns: 1fr;
+    }
+    
+    .appointment-form-wrapper,
+    .info-card,
+    .contact-card {
+        padding: 20px;
+    }
+}

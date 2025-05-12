@@ -1,3 +1,4 @@
+
 /* Global Styles */
 :root {
     --primary-color: #ff0000;
@@ -268,6 +269,26 @@ ul {
     transition: all 0.3s ease;
 }
 
+/* Main Navigation Links */
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    display: inline-block;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+    margin: 0;
+}
+
+.nav-links a:hover {
+    color: #ff0000;
+}
+
 /* Book Appointment Button in Navigation */
 .book-appointment-btn {
     background-color: var(--primary-color);
@@ -284,6 +305,35 @@ ul {
 .book-appointment-btn:hover {
     background-color: #ff3333;
     transform: scale(1.05);
+}
+
+/* Remove all special styling from login and signup buttons */
+.login-button, .signup-button, #loginBtn, #signupBtn {
+    background-color: transparent !important;
+    border: none !important;
+    color: white !important;
+    padding: 8px 12px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+}
+
+.login-button:hover, .signup-button:hover, #loginBtn:hover, #signupBtn:hover {
+    color: #ff0000 !important;
+    background-color: transparent !important;
+}
+
+/* Fix navbar alignment */
+.nav-links {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links li {
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
 }
 
 /* Hero Section */
@@ -2587,3 +2637,66 @@ ul {
 .notification.info {
     background-color: #2196F3;
 }
+
+/* Navigation Buttons Styling */
+.nav-button {
+    display: inline-block;
+    padding: 8px 15px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    color: var(--text-color);
+}
+
+.book-btn {
+    background-color: #ff0000;
+    color: white;
+}
+
+.book-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+.login-btn {
+    background-color: transparent;
+    border: 1px solid #ff0000;
+    color: white;
+}
+
+.login-btn:hover {
+    background-color: rgba(255, 0, 0, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.2);
+}
+
+.signup-btn {
+    background-color: #ff0000;
+    color: white;
+}
+
+.signup-btn:hover {
+    background-color: #cc0000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(255, 0, 0, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .nav-button {
+        margin-top: 10px;
+        display: block;
+        text-align: center;
+    }
+}
+
+
+
+
+

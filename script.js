@@ -1636,6 +1636,182 @@ document.addEventListener('DOMContentLoaded', function() {
         window.history.replaceState({}, document.title, newUrl);
     }
     
+    // Login System
+    document.addEventListener('DOMContentLoaded', function() {
+        const loginBtn = document.getElementById('loginBtn');
+        const loginModal = document.getElementById('loginModal');
+        const closeModalBtns = document.querySelectorAll('.close-modal');
+        const loginForm = document.getElementById('loginForm');
+        const emailLoginForm = document.getElementById('emailLoginForm');
+        const verificationForm = document.getElementById('verificationForm');
+        const loginSuccess = document.getElementById('loginSuccess');
+        const userEmailSpan = document.getElementById('userEmail');
+        const codeVerificationForm = document.getElementById('codeVerificationForm');
+        const resendCodeBtn = document.getElementById('resendCode');
+        const closeLoginSuccessBtn = document.querySelector('.close-login-success');
+        const codeInputs = document.querySelectorAll('.code-input');
+        
+        // Open login modal
+        if (loginBtn) {
+            loginBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                loginModal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent scrolling
+            });
+        }
+        
+        // Close modals
+        closeModalBtns.forEach(btn => {
+            btn.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+                // Reset forms
+                resetLoginForms();
+            });
+        });
+        
+        // Handle email submission
+        if (loginForm) {
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const email = document.getElementById('loginEmail').value;
+                
+                if (validateEmail(email)) {
+                    // Show verification form
+                    emailLoginForm.style.display = 'none';
+                    verificationForm.style.display = 'block';
+                    userEmailSpan.textContent = email;
+                    
+                    // Simulate sending verification code
+                    simulateSendVerificationCode(email);
+                    
+                    // Focus on first code input
+                    codeInputs[0].focus();
+                } else {
+                    alert('Please enter a valid email address');
+                }
+            });
+        }
+        
+        // Handle code inputs (auto-tab)
+        codeInputs.forEach((input, index) => {
+            input.addEventListener('keyup', function(e) {
+                if (e.key >= '0' && e.key <= '9') {
+                    input.value = e.key;
+                    
+                    // Auto-focus next input
+                    if (index < codeInputs.length - 1) {
+                        codeInputs[index + 1].focus();
+                    }
+                } else if (e.key === 'Backspace') {
+                    input.value = '';
+                    
+                    // Focus previous input
+                    if (index > 0) {
+                        codeInputs[index - 1].focus();
+                    }
+                }
+            });
+            
+            // Handle paste event
+            input.addEventListener('paste', function(e) {
+                e.preventDefault();
+                const pasteData = e.clipboardData.getData('text').trim();
+                
+                if (/^\d{6}$/.test(pasteData)) {
+                    // Fill all inputs with pasted code
+                    for (let i = 0; i < codeInputs.length; i++) {
+                        codeInputs[i].value = pasteData.charAt(i);
+                    }
+                }
+            });
+        });
+        
+        // Handle verification code submission
+        if (codeVerificationForm) {
+            codeVerificationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get entered code
+                let enteredCode = '';
+                codeInputs.forEach(input => {
+                    enteredCode += input.value;
+                });
+                
+                // Verify code (in a real app, this would be validated server-side)
+                if (enteredCode === '123456') { // Demo code
+                    verificationForm.style.display = 'none';
+                    loginSuccess.style.display = 'block';
+                } else {
+                    alert('Invalid verification code. Please try again.');
+                    // Reset code inputs
+                    codeInputs.forEach(input => {
+                        input.value = '';
+                    });
+                    codeInputs[0].focus();
+                }
+            });
+        }
+        
+        // Handle resend code
+        if (resendCodeBtn) {
+            resendCodeBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const email = userEmailSpan.textContent;
+                
+                // Simulate resending code
+                simulateSendVerificationCode(email);
+                
+                // Show message
+                alert('A new verification code has been sent to your email.');
+                
+                // Reset code inputs
+                codeInputs.forEach(input => {
+                    input.value = '';
+                });
+                codeInputs[0].focus();
+            });
+        }
+        
+        // Close success and reset
+        if (closeLoginSuccessBtn) {
+            closeLoginSuccessBtn.addEventListener('click', function() {
+                loginModal.style.display = 'none';
+                document.body.style.overflow = 'auto'; // Re-enable scrolling
+                
+                // Update login button to show logged in state
+                loginBtn.textContent = 'My Account';
+                loginBtn.classList.add('logged-in');
+                
+                // Reset forms for next time
+                resetLoginForms();
+            });
+        }
+        
+        // Helper functions
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+        
+        function simulateSendVerificationCode(email) {
+            // In a real application, this would make an API call to send the code
+            console.log(`Verification code sent to ${email}`);
+            // The code would be 123456 for demo purposes
+        }
+        
+        function resetLoginForms() {
+            // Reset all forms to initial state
+            if (loginForm) loginForm.reset();
+            if (codeVerificationForm) codeVerificationForm.reset();
+            
+            // Show email form, hide others
+            if (emailLoginForm) emailLoginForm.style.display = 'block';
+            if (verificationForm) verificationForm.style.display = 'none';
+            if (loginSuccess) loginSuccess.style.display = 'none';
+        }
+    });
+});
     // Function to update days based on selected month
     function updateDays() {
         if (!monthSelect || !daySelect) return;

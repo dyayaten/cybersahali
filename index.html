@@ -21,6 +21,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
                 <li><a href="#contact" class="book-appointment-btn">Book Appointment</a></li>
+                <li><a href="#" id="loginBtn" class="login-btn">Login</a></li>
             </ul>
             <div class="hamburger">
                 <span class="bar"></span>
@@ -519,6 +520,57 @@
         </div>
     </div>
 
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content login-content">
+            <span class="close-modal">&times;</span>
+            <div class="login-container">
+                <!-- Email Login Form -->
+                <div id="emailLoginForm">
+                    <h3>Login to Your Account</h3>
+                    <form id="loginForm">
+                        <div class="form-group">
+                            <input type="email" id="loginEmail" name="email" placeholder="Your Email" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Continue</button>
+                    </form>
+                </div>
+                
+                <!-- Verification Code Form (initially hidden) -->
+                <div id="verificationForm" style="display: none;">
+                    <h3>Verify Your Email</h3>
+                    <p>We've sent a verification code to <span id="userEmail"></span></p>
+                    <form id="codeVerificationForm">
+                        <div class="form-group verification-code-group">
+                            <input type="text" maxlength="1" class="code-input" required>
+                            <input type="text" maxlength="1" class="code-input" required>
+                            <input type="text" maxlength="1" class="code-input" required>
+                            <input type="text" maxlength="1" class="code-input" required>
+                            <input type="text" maxlength="1" class="code-input" required>
+                            <input type="text" maxlength="1" class="code-input" required>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">Verify</button>
+                        </div>
+                        <p class="resend-code">Didn't receive a code? <a href="#" id="resendCode">Resend</a></p>
+                    </form>
+                </div>
+                
+                <!-- Success Message (initially hidden) -->
+                <div id="loginSuccess" style="display: none;">
+                    <div class="success-icon">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3>Login Successful!</h3>
+                    <p>You are now logged in to your CyberSahali account.</p>
+                    <button class="btn btn-primary close-login-success">Continue</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
+
+

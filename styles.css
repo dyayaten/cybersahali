@@ -2104,7 +2104,6 @@ ul {
 #userEmail {
     color: var(--primary-color);
     font-weight: 500;
-}
     margin-bottom: 25px;
     font-size: 1.5rem;
     text-transform: uppercase;
@@ -2470,5 +2469,121 @@ ul {
         margin-top: 10px;
     }
 }
+/* تنسيق زر التسجيل */
+.signup-btn {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
 
+.signup-btn:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+}
 
+/* تحسين مظهر النوافذ المنبثقة */
+.switch-form {
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+.switch-form a {
+    color: var(--primary-color);
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.login-container {
+    padding: 10px;
+}
+
+.login-container h3 {
+    margin-bottom: 25px;
+    position: relative;
+    display: inline-block;
+}
+/* تنسيق قائمة المستخدم */
+.user-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 8px 15px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+.user-info:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.user-info i {
+    margin-left: 8px;
+    font-size: 1.2rem;
+}
+
+.user-dropdown {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: white;
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    padding: 8px 0;
+    z-index: 1000;
+    display: none;
+}
+
+.user-menu:hover .user-dropdown {
+    display: block;
+}
+
+.user-dropdown a {
+    color: #333;
+    padding: 10px 15px;
+    text-decoration: none;
+    display: block;
+    transition: background-color 0.3s;
+}
+
+.user-dropdown a:hover {
+    background-color: #f5f5f5;
+    color: var(--primary-color);
+}
+
+/* تنسيق الإشعارات */
+#notificationContainer {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.notification {
+    padding: 12px 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    color: white;
+}
+
+.notification.success {
+    background-color: #4CAF50;
+}
+
+.notification.error {
+    background-color: #F44336;
+}
+
+.notification.info {
+    background-color: #2196F3;
+}

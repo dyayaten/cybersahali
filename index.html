@@ -8,28 +8,152 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="container">
-            <div class="logo">
-                <img src="logo.svg" alt="Cyber Sahali Logo" class="logo-icon">
-                <h1>Cyber<span>Sahali</span></h1>
+    <!-- إضافة قائمة المستخدم (مخفية افتراض<|im_start|>) -->
+<div id="userMenuContainer" style="display: none;">
+    <div class="user-menu">
+        <div class="user-info">
+            <span id="userName">User</span>
+            <i class="fas fa-user-circle"></i>
+        </div>
+        <div class="user-dropdown">
+            <a href="/dashboard">لوحة التحكم</a>
+            <a href="/profile">الملف الشخصي</a>
+            <a href="/settings">الإعدادات</a>
+            <a href="#" id="logoutBtn">تسجيل الخروج</a>
+        </div>
+    </div>
+</div>
+    <!-- حذف نموذج التسجيل وتسجيل الدخول من الصفحة الرئيسية -->
+<div class="container" style="max-width: 400px; margin-left: 80px; padding-top: 150px;">
+    <style>
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            color: #fff;
+            background-color: #ff4d4d;
+            border: none;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn:hover {
+            background-color: #e63939;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</div>
+
+<!-- تعديل قائمة التنقل لإضافة زر التسجيل -->
+<nav class="navbar">
+    <div class="container">
+        <div class="logo">
+            <img src="logo.svg" alt="Cyber Sahali Logo" class="logo-icon">
+            <h1>Cyber<span>Sahali</span></h1>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+            <li><a href="#contact" class="book-appointment-btn">Book Appointment</a></li>
+            <li><a href="#" id="loginBtn" class="login-btn">Login</a></li>
+            <li><a href="#" id="signupBtn" class="signup-btn">Sign Up</a></li>
+        </ul>
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+
+<!-- إضافة نافذة منبثقة للتسجيل -->
+<div id="signupModal" class="modal">
+    <div class="modal-content login-content">
+        <span class="close-modal">&times;</span>
+        <div class="login-container">
+            <h3>Create an Account</h3>
+            <form id="signupForm">
+                <div class="form-group">
+                    <input type="text" id="signupName" name="name" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="signupEmail" name="email" placeholder="Your Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="signupPassword" name="password" placeholder="Your Password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">SIGN UP</button>
+            </form>
+            <p class="switch-form">Already have an account? <a href="#" id="switchToLogin">Login</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- تعديل نافذة تسجيل الدخول -->
+<div id="loginModal" class="modal">
+    <div class="modal-content login-content">
+        <span class="close-modal">&times;</span>
+        <div class="login-container">
+            <!-- Email Login Form -->
+            <div id="emailLoginForm">
+                <h3>Login to Your Account</h3>
+                <form id="loginForm">
+                    <div class="form-group">
+                        <input type="email" id="loginEmail" name="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" id="loginPassword" name="password" placeholder="Your Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">LOGIN</button>
+                </form>
+                <p class="switch-form">Don't have an account? <a href="#" id="switchToSignup">Sign Up</a></p>
             </div>
-            <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#services">Services</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-                <li><a href="#contact" class="book-appointment-btn">Book Appointment</a></li>
-                <li><a href="#" id="loginBtn" class="login-btn">Login</a></li>
-            </ul>
-            <div class="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
+            
+            <!-- Verification Code Form (initially hidden) -->
+            <div id="verificationForm" style="display: none;">
+                <h3>Verify Your Email</h3>
+                <p>We've sent a verification code to <span id="userEmail"></span></p>
+                <form id="codeVerificationForm">
+                    <div class="form-group verification-code-group">
+                        <input type="text" maxlength="1" class="code-input" required>
+                        <input type="text" maxlength="1" class="code-input" required>
+                        <input type="text" maxlength="1" class="code-input" required>
+                        <input type="text" maxlength="1" class="code-input" required>
+                        <input type="text" maxlength="1" class="code-input" required>
+                        <input type="text" maxlength="1" class="code-input" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-primary">Verify</button>
+                    </div>
+                    <p class="resend-code">Didn't receive a code? <a href="#" id="resendCode">Resend</a></p>
+                </form>
+            </div>
+            
+            <!-- Success Message (initially hidden) -->
+            <div id="loginSuccess" style="display: none;">
+                <div class="success-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3>Login Successful!</h3>
+                <p>You are now logged in to your CyberSahali account.</p>
+                <button class="btn btn-primary close-login-success">Continue</button>
             </div>
         </div>
-    </nav>
+    </div>
+</div>
+   
 
     <!-- Hero Section -->
     <section id="home" class="hero">

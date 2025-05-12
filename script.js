@@ -1844,4 +1844,451 @@ document.addEventListener('DOMContentLoaded', function() {
             daySelect.appendChild(option);
         }
     }
+   
+document.getElementById('signupForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('signup-name').value;
+  const email = document.getElementById('signup-email').value;
+  const password = document.getElementById('signup-password').value;
+
+  const res = await fetch('/signup', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ name, email, password })
+  });
+
+  const text = await res.text();
+  alert(text);
 });
+document.getElementById('loginForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const email = document.getElementById('login-email').value;
+  const password = document.getElementById('login-password').value;
+
+  const res = await fetch('/login', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email, password })
+  });
+
+  const text = await res.text();
+  if (res.ok) {
+    alert('✅ Login successful');
+    window.location.href = '/dashboard';
+  } else {
+    alert('❌ ' + text);
+  }
+});
+// إضافة وظائف التسجيل وتسجيل الدخول
+document.addEventListener('DOMContentLoaded', function() {
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const closeModalBtns = document.querySelectorAll('.close-modal');
+    const switchToLogin = document.getElementById('switchToLogin');
+    const switchToSignup = document.getElementById('switchToSignup');
+    
+    // فتح نافذة تسجيل الدخول
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // منع التمرير
+        });
+    }
+    
+    // فتح نافذة التسجيل
+    if (signupBtn) {
+        signupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // منع التمرير
+        });
+    }
+    
+    // إغلاق النوافذ المنبثقة
+    closeModalBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // إعادة تمكين التمرير
+        });
+    });
+    
+    // التبديل من التسجيل إلى تسجيل الدخول
+    if (switchToLogin) {
+        switchToLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'none';
+            loginModal.style.display = 'block';
+        });
+    }
+    
+    // التبديل من تسجيل الدخول إلى التسجيل
+    if (switchToSignup) {
+        switchToSignup.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'block';
+        });
+    }
+    
+    // إغلاق النوافذ عند النقر خارجها
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        if (e.target === signupModal) {
+            signupModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // معالجة نموذج التسجيل
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            try {
+                const res = await fetch('/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const text = await res.text();
+                alert(text);
+                if (res.ok) {
+                    signupModal.style.display = 'none';
+                    loginModal.style.display = 'block';
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during signup');
+            }
+        });
+    }
+    
+    // معالجة نموذج تسجيل الدخول
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const res = await fetch('/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const text = await res.text();
+                if (res.ok) {
+                    // عرض رسالة النجاح
+                    document.getElementById('emailLoginForm').style.display = 'none';
+                    document.getElementById('loginSuccess').style.display = 'block';
+                } else {
+                    alert('❌ ' + text);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred during login');
+            }
+        });
+    }
+});
+// التحقق من حالة تسجيل الدخول عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', async function() {
+    // تهيئة عناصر واجهة المستخدم
+    initUI();
+    
+    // التحقق من حالة تسجيل الدخول
+    try {
+        const response = await fetch('/api/auth/status');
+        const data = await response.json();
+        
+        if (data.isAuthenticated) {
+            // المستخدم مسجل الدخول
+            updateUIForLoggedInUser(data.user);
+        }
+    } catch (error) {
+        console.error('Error checking auth status:', error);
+    }
+});
+
+// تهيئة عناصر واجهة المستخدم
+function initUI() {
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const loginModal = document.getElementById('loginModal');
+    const signupModal = document.getElementById('signupModal');
+    const closeModalBtns = document.querySelectorAll('.close-modal');
+    const switchToLogin = document.getElementById('switchToLogin');
+    const switchToSignup = document.getElementById('switchToSignup');
+    const logoutBtn = document.getElementById('logoutBtn');
+    
+    // فتح نافذة تسجيل الدخول
+    if (loginBtn) {
+        loginBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    
+    // فتح نافذة التسجيل
+    if (signupBtn) {
+        signupBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        });
+    }
+    
+    // إغلاق النوافذ المنبثقة
+    closeModalBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        });
+    });
+    
+    // التبديل من التسجيل إلى تسجيل الدخول
+    if (switchToLogin) {
+        switchToLogin.addEventListener('click', function(e) {
+            e.preventDefault();
+            signupModal.style.display = 'none';
+            loginModal.style.display = 'block';
+        });
+    }
+    
+    // التبديل من تسجيل الدخول إلى التسجيل
+    if (switchToSignup) {
+        switchToSignup.addEventListener('click', function(e) {
+            e.preventDefault();
+            loginModal.style.display = 'none';
+            signupModal.style.display = 'block';
+        });
+    }
+    
+    // إغلاق النوافذ عند النقر خارجها
+    window.addEventListener('click', (e) => {
+        if (e.target === loginModal) {
+            loginModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+        if (e.target === signupModal) {
+            signupModal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+    });
+    
+    // معالجة نموذج التسجيل
+    const signupForm = document.getElementById('signupForm');
+    if (signupForm) {
+        signupForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // عرض مؤشر التحميل
+            const submitBtn = signupForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'جاري التسجيل...';
+            submitBtn.disabled = true;
+            
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+
+            try {
+                const res = await fetch('/api/signup', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ name, email, password })
+                });
+
+                const data = await res.json();
+                
+                if (res.ok) {
+                    // نجاح التسجيل
+                    showNotification('تم التسجيل بنجاح! يمكنك الآن تسجيل الدخول.', 'success');
+                    signupModal.style.display = 'none';
+                    loginModal.style.display = 'block';
+                    signupForm.reset();
+                } else {
+                    // فشل التسجيل
+                    showNotification(data.message || 'حدث خطأ أثناء التسجيل', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('حدث خطأ في الاتصال بالخادم', 'error');
+            } finally {
+                // إعادة زر التسجيل إلى حالته الأصلية
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+    
+    // معالجة نموذج تسجيل الدخول
+    const loginForm = document.getElementById('loginForm');
+    if (loginForm) {
+        loginForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // عرض مؤشر التحميل
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.textContent;
+            submitBtn.textContent = 'جاري تسجيل الدخول...';
+            submitBtn.disabled = true;
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const res = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await res.json();
+                
+                if (res.ok) {
+                    // نجاح تسجيل الدخول
+                    showNotification('تم تسجيل الدخول بنجاح!', 'success');
+                    loginModal.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                    loginForm.reset();
+                    
+                    // تحديث واجهة المستخدم
+                    updateUIForLoggedInUser(data.user);
+                    
+                    // إعادة تحميل الصفحة بعد تأخير قصير
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                } else {
+                    // فشل تسجيل الدخول
+                    showNotification(data.message || 'بيانات الدخول غير صحيحة', 'error');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('حدث خطأ في الاتصال بالخادم', 'error');
+            } finally {
+                // إعادة زر تسجيل الدخول إلى حالته الأصلية
+                submitBtn.textContent = originalBtnText;
+                submitBtn.disabled = false;
+            }
+        });
+    }
+    
+    // معالجة تسجيل الخروج
+    if (logoutBtn) {
+        logoutBtn.addEventListener('click', async function(e) {
+            e.preventDefault();
+            
+            try {
+                const res = await fetch('/api/logout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                if (res.ok) {
+                    showNotification('تم تسجيل الخروج بنجاح', 'success');
+                    
+                    // إعادة تحميل الصفحة بعد تأخير قصير
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
+                }
+            } catch (error) {
+                console.error('Error logging out:', error);
+                showNotification('حدث خطأ أثناء تسجيل الخروج', 'error');
+            }
+        });
+    }
+}
+
+// تحديث واجهة المستخدم للمستخدم المسجل
+function updateUIForLoggedInUser(user) {
+    const loginBtn = document.getElementById('loginBtn');
+    const signupBtn = document.getElementById('signupBtn');
+    const userMenuContainer = document.getElementById('userMenuContainer');
+    
+    if (loginBtn && signupBtn && userMenuContainer) {
+        // إخفاء أزرار تسجيل الدخول والتسجيل
+        loginBtn.style.display = 'none';
+        signupBtn.style.display = 'none';
+        
+        // إظهار قائمة المستخدم
+        userMenuContainer.style.display = 'block';
+        
+        // تحديث اسم المستخدم
+        const userNameElement = document.getElementById('userName');
+        if (userNameElement) {
+            userNameElement.textContent = user.name;
+        }
+    }
+}
+
+// عرض إشعار للمستخدم
+function showNotification(message, type = 'info') {
+    // التحقق من وجود عنصر الإشعارات
+    let notificationContainer = document.getElementById('notificationContainer');
+    
+    // إنشاء عنصر الإشعارات إذا لم يكن موجودًا
+    if (!notificationContainer) {
+        notificationContainer = document.createElement('div');
+        notificationContainer.id = 'notificationContainer';
+        notificationContainer.style.position = 'fixed';
+        notificationContainer.style.top = '20px';
+        notificationContainer.style.right = '20px';
+        notificationContainer.style.zIndex = '9999';
+        document.body.appendChild(notificationContainer);
+    }
+    
+    // إنشاء عنصر الإشعار
+    const notification = document.createElement('div');
+    notification.className = `notification ${type}`;
+    notification.textContent = message;
+    
+    // تنسيق الإشعار
+    notification.style.backgroundColor = type === 'success' ? '#4CAF50' : type === 'error' ? '#F44336' : '#2196F3';
+    notification.style.color = 'white';
+    notification.style.padding = '12px 20px';
+    notification.style.marginBottom = '10px';
+    notification.style.borderRadius = '4px';
+    notification.style.boxShadow = '0 2px 5px rgba(0,0,0,0.2)';
+    notification.style.opacity = '0';
+    notification.style.transform = 'translateY(-20px)';
+    notification.style.transition = 'opacity 0.3s, transform 0.3s';
+    
+    // إضافة الإشعار إلى الحاوية
+    notificationContainer.appendChild(notification);
+    
+    // إظهار الإشعار بتأثير متحرك
+    setTimeout(() => {
+        notification.style.opacity = '1';
+        notification.style.transform = 'translateY(0)';
+    }, 10);
+    
+    // إخفاء الإشعار بعد 5 ثوانٍ
+    setTimeout(() => {
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateY(-20px)';
+        
+        // إزالة الإشعار من DOM بعد انتهاء التأثير
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 5000);
+}
